@@ -31,7 +31,7 @@ class SlideshowController {
     }
 
     load_images() {
-        const path = "/all_photos.json"
+        const path = this.element.dataset.eventPhotos
         fetch(path)
             .then(response => response.json())
             .then(data => {

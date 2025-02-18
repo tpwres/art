@@ -2,11 +2,12 @@
 
 {% block content %}
 {% set gallery_root = config.extra.gallery_root %}
+{% set event_photos = config.extra.event_photos_url %}
 <button type="button" id="start-slideshow">
     Launch slideshow in full-screen
 </button>
 
-<div id="slideshow-container" data-gallery-root="{{ gallery_root }}">
+<div id="slideshow-container" data-gallery-root="{{ gallery_root }}" data-event-photos="{{ event_photos }}">
     <img class="pic" />
     <img class="pic spare" id="original-spare" />
     <aside id="caption">

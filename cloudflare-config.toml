@@ -29,3 +29,4 @@ footer_links = [
 ]
 
 gallery_root = "https://i.tpwres.pl/"
+event_photos_url = "//tpwres.pl/all_photos.json"
