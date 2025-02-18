@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set gallery_root = config.extra.gallery_root %}
+<button type="button" id="start-slideshow">
+    Launch slideshow in full-screen
+</button>
+
+<div id="slideshow-container" data-gallery-root="{{ gallery_root }}">
+    <img class="pic" />
+    <img class="pic spare" id="original-spare" />
+    <aside id="caption">
+        <span class="text"></span>
+        <br/>
+        <span class="event"></span>
+        <span class="source"></span>
+    </aside>
+</div>
+{% endblock %}

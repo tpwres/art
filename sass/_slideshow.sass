@@ -1,0 +1,34 @@
+button#start-slideshow
+  display: block
+  margin: 0.5rem auto
+  font-size: 1.5rem
+
+#slideshow-container
+  .pic
+    position: absolute
+    left: 50%
+    transform: translate(-50%)
+    object-fit: contain
+    display: block
+    margin: 0 auto
+    transition: opacity 0.5s linear
+
+  #caption
+    min-width: 33vw
+    position: absolute
+    bottom: 0
+    right: 0
+    padding: 0.5rem 1rem
+    background: color-mix(in srgb, $gb-dm-bg0, transparent 50%)
+    color: $gb-dm-fg0
+    backdrop-filter: blur(5px)
+
+
+    .text
+      font-size: 3rem
+
+    .source, .event
+      font-size: 2rem
+
+    .source
+      float: right
