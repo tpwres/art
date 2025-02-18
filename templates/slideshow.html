@@ -3,6 +3,7 @@
 {% block content %}
 {% set gallery_root = config.extra.gallery_root %}
 {% set event_photos = config.extra.event_photos_url %}
+{% set talent_photos = config.extra.talent_photos_url %}
 {{ section.content | safe }}
 <div id="controls">
     <button type="button" id="start-slideshow">
@@ -13,7 +14,6 @@
         <details>
             <summary>Controls</summary>
             <fieldset>
-                <legend>Select speed</legend>
                 <input id="rapid" type="radio" name="speed" value="5000" />
                 <label for="rapid"> Rapid (5s) </label>
                 <input id="fast" type="radio" name="speed" value="10000" checked />
@@ -22,12 +22,18 @@
                 <label for="slow"> Slow (30s) </label>
                 <input id="art" type="radio" name="speed" value="60000" />
                 <label for="art"> Art Gallery (60s) </label>
+                <br/>
+                <input id="progressbar_visible" name="progressbar_visible" type="checkbox" name="progressbar_visible">
+                <label for="progressbar_visible">Show slide progress</label>
             </fieldset>
         </details>
     </div>
 </div>
 
-<div id="slideshow-container" data-gallery-root="{{ gallery_root }}" data-event-photos="{{ event_photos }}">
+<div id="slideshow-container"
+     data-gallery-root="{{ gallery_root }}"
+     data-talent-photos="{{ talent_photos }}"
+     data-event-photos="{{ event_photos }}">
     <img class="pic" />
     <img class="pic spare" id="original-spare" />
     <aside id="caption">
@@ -35,6 +41,8 @@
         <br/>
         <span class="event"></span>
         <span class="source"></span>
+        <br/>
+        <progress max="100" />
     </aside>
 </div>
 {% endblock %}

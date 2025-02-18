@@ -14,7 +14,8 @@ class SlideshowController {
         this.spare_element = root.querySelector('.pic.spare')
         this.caption_text_element = root.querySelector('#caption .text')
         this.caption_src_element = root.querySelector('#caption .source')
-        this.caption_event_element = root.querySelector('#caption .event')
+        this.caption_info_element = root.querySelector('#caption .event')
+        this.progress_element = root.querySelector('#caption progress')
         this.start_button = start
 
         this.gallery_root = root.dataset.galleryRoot
@@ -27,15 +28,25 @@ class SlideshowController {
         this.start_button.addEventListener('click', this.start_slideshow.bind(this))
         this.element.addEventListener('fullscreenchange', this.fullscreen_change.bind(this))
         this.element.addEventListener('click', this.advance_and_reset_interval.bind(this))
+        this.progress_element.addEventListener
         this.load_images()
     }
 
     load_images() {
-        const path = this.element.dataset.eventPhotos
-        fetch(path)
+        const event_photos = this.element.dataset.eventPhotos
+        fetch(event_photos)
             .then(response => response.json())
             .then(data => {
-                this.all_photos = data
+                this.all_photos.push(...data)
+                this.shuffle_photos()
+            })
+            .catch(error => console.error('Error:', error))
+
+        const talent_photos = this.element.dataset.talentPhotos
+        fetch(talent_photos)
+            .then(response => response.json())
+            .then(data => {
+                this.all_photos.push(...data)
                 this.shuffle_photos()
             })
             .catch(error => console.error('Error:', error))
@@ -47,6 +58,8 @@ class SlideshowController {
             this.slide_change_time = Number(speed_input.value)
             console.log("SCT", this.slide_change_time)
         }
+
+        this.display_progress = !!document.querySelector('[name=progressbar_visible]:checked')
 
         this.element.requestFullscreen()
             .then(() => this.advance_and_reset_interval())
@@ -79,22 +92,50 @@ class SlideshowController {
         // Start animation only after image loads
         img_element.addEventListener('load', crossfade)
         img_element.src = path
+        this.reset_progress()
     }
 
     update_text(key, photo, left_or_right) {
         const [datestr, _num] = key.split('_')
         const date = new Date(`${datestr.slice(0, 4)}-${datestr.slice(4,6)}-${datestr.slice(6)}`)
         this.caption_src_element.textContent = ''
-        this.caption_event_element.textContent = ''
+        this.caption_info_element.textContent = ''
 
-        const { caption, source, event } = photo
+        const { caption, source, event, talent } = photo
         this.caption_text_element.innerHTML = marked.parseInline(caption)
-        this.caption_event_element.innerHTML = `${this.dtf.format(date)} ${marked.parseInline(event)}`
-        this.caption_src_element.innerHTML = `Source: ${marked.parseInline(source)}`
+        if (source)
+            this.caption_src_element.innerHTML = `Source: ${marked.parseInline(source)}`
+
+        if (event)
+            this.caption_info_element.innerHTML = `${this.dtf.format(date)} ${marked.parseInline(event)}`
+        else if (talent)
+            this.caption_info_element.innerHTML = `Talent: ${marked.parseInline(talent)}`
+
         const caption_el = this.element.querySelector('#caption')
         caption_el.style.display = 'block'
         caption_el.classList.remove('left', 'right')
         caption_el.classList.add(left_or_right ? 'left' : 'right')
+    }
+
+    reset_progress() {
+        this.progress_element.value = 0
+        this.slide_start = new Date().valueOf() // Unix timestamp
+        if (this.display_progress) {
+            this.progress_element.style.display = 'inline'
+            this.animate_progress()
+        } else {
+            this.progress_element.style.display = 'none'
+        }
+    }
+
+    animate_progress() {
+        requestAnimationFrame(() => {
+            const now = new Date().valueOf()
+            const progress = ((now - this.slide_start) / this.slide_change_time) * 100.0
+            this.progress_element.value = progress
+            if (progress < 100)
+                requestAnimationFrame(this.animate_progress.bind(this))
+        })
     }
 
     shuffle_photos() {
@@ -111,8 +152,10 @@ class SlideshowController {
             this.img_element.src = ''
             this.spare_element.src = ''
             this.caption_text_element.textContent = ''
-            this.caption_event_element.textContent = ''
+            this.caption_info_element.textContent = ''
             this.caption_src_element.textContent = ''
+            const caption_el = this.element.querySelector('#caption')
+            caption_el.style.display = 'none'
         }
     }
 
