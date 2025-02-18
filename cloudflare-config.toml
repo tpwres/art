@@ -28,5 +28,5 @@ footer_links = [
   { url = "//tpwres.pl/authors", name = "Authors", icon = "heart" }
 ]
 
-gallery_root = "https://i.tpwres.pl/"
+gallery_root = "https://i.tpwres.pl"
 event_photos_url = "//tpwres.pl/all_photos.json"
