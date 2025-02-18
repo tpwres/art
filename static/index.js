@@ -42,6 +42,12 @@ class SlideshowController {
     }
 
     start_slideshow() {
+        const speed_input = document.querySelector('[name=speed]:checked')
+        if (speed_input) {
+            this.slide_change_time = Number(speed_input.value)
+            console.log("SCT", this.slide_change_time)
+        }
+
         this.element.requestFullscreen()
             .then(() => this.advance_and_reset_interval())
             .catch(error => console.error('Fullscreen denied:', error))
@@ -61,19 +67,34 @@ class SlideshowController {
         const img_element = this.use_spare ? this.img_element : this.spare_element
         const other_img = this.use_spare ? this.spare_element : this.img_element
         this.use_spare = !this.use_spare
-        img_element.src = path
+
+        const update_text = () => this.update_text(key, photo, this.use_spare)
+        function crossfade() {
+            img_element.style.opacity = '1'
+            other_img.style.opacity = '0'
+            update_text()
+            img_element.removeEventListener('load', crossfade)
+        }
         img_element.style.height = '100vh'
+        // Start animation only after image loads
+        img_element.addEventListener('load', crossfade)
+        img_element.src = path
+    }
 
-        img_element.style.opacity = '1'
-        other_img.style.opacity = '0'
-
+    update_text(key, photo, left_or_right) {
         const [datestr, _num] = key.split('_')
         const date = new Date(`${datestr.slice(0, 4)}-${datestr.slice(4,6)}-${datestr.slice(6)}`)
+        this.caption_src_element.textContent = ''
+        this.caption_event_element.textContent = ''
 
         const { caption, source, event } = photo
         this.caption_text_element.innerHTML = marked.parseInline(caption)
         this.caption_event_element.innerHTML = `${this.dtf.format(date)} ${marked.parseInline(event)}`
         this.caption_src_element.innerHTML = `Source: ${marked.parseInline(source)}`
+        const caption_el = this.element.querySelector('#caption')
+        caption_el.style.display = 'block'
+        caption_el.classList.remove('left', 'right')
+        caption_el.classList.add(left_or_right ? 'left' : 'right')
     }
 
     shuffle_photos() {
