@@ -18,6 +18,7 @@ mensch_links = [
   { url = "//tpwres.pl/v/", name = "Places", icon = "map-pin-house" },
   { url = "//tpwres.pl/c/", name = "Championships", icon = "trophy" },
   { url = "//mf.tpwres.pl", name = "Matchfinder", icon = "crosshair" },
+  { url = "//art.tpwres.pl", name = "Artwall", icon = "image-play" }
 ]
 
 footer_links = [
