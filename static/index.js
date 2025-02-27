@@ -74,7 +74,7 @@ class SlideshowController {
     }
 
     advance_slide() {
-        this.current_slide += 1
+        this.current_slide = (this.current_slide + 1) % this.all_photos.length
         const [key, photo] = this.all_photos[this.current_slide]
         const path = `${this.gallery_root}${photo.path}`
         const img_element = this.use_spare ? this.img_element : this.spare_element
