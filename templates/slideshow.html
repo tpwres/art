@@ -14,17 +14,34 @@
         <details>
             <summary>Controls</summary>
             <fieldset>
-                <input id="rapid" type="radio" name="speed" value="5000" />
-                <label for="rapid"> Rapid (5s) </label>
-                <input id="fast" type="radio" name="speed" value="10000" checked />
-                <label for="fast"> Fast (10s) </label>
-                <input id="slow" type="radio" name="speed" value="30000" />
-                <label for="slow"> Slow (30s) </label>
-                <input id="art" type="radio" name="speed" value="60000" />
-                <label for="art"> Art Gallery (60s) </label>
-                <br/>
-                <input id="progressbar_visible" name="progressbar_visible" type="checkbox" name="progressbar_visible">
-                <label for="progressbar_visible">Show slide progress</label>
+                <div>
+                    <span>Speed: </span>
+                    <input id="rapid" type="radio" name="speed" value="5000" />
+                    <label for="rapid"> Rapid (5s) </label>
+                    <input id="fast" type="radio" name="speed" value="10000" checked />
+                    <label for="fast"> Fast (10s) </label>
+                    <input id="slow" type="radio" name="speed" value="30000" />
+                    <label for="slow"> Slow (30s) </label>
+                    <input id="art" type="radio" name="speed" value="60000" />
+                    <label for="art"> Art Gallery (60s) </label>
+                </div>
+                <div>
+                    <input id="progressbar_visible" name="progressbar_visible" type="checkbox" name="progressbar_visible">
+                    <label for="progressbar_visible">Show slide progress</label>
+                </div>
+                <div>
+                    <span>Filter: </span>
+                    <input id="filter_events" type="checkbox" name="filter" value="event" checked />
+                    <label for="filter_events">Events</label>
+                    <input id="filter_talent" type="checkbox" name="filter" value="talent" checked />
+                    <label for="filter_talent">Talent</label>
+                    <input id="filter_venues" type="checkbox" name="filter" value="venue" checked />
+                    <label for="filter_venues">Venues</label>
+                    <input id="filter_championships" type="checkbox" name="filter" value="championship" checked />
+                    <label for="filter_champ">Championships</label>
+                    <input id="filter_articles" type="checkbox" name="filter" value="article" checked />
+                    <label for="filter_articles">Other articles</label>
+                </div>
             </fieldset>
         </details>
     </div>
