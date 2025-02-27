@@ -99,17 +99,26 @@ class SlideshowController {
         const [datestr, _num] = key.split('_')
         const date = new Date(`${datestr.slice(0, 4)}-${datestr.slice(4,6)}-${datestr.slice(6)}`)
         this.caption_src_element.textContent = ''
-        this.caption_info_element.textContent = ''
+        const info = this.caption_info_element
+        info.textContent = ''
 
-        const { caption, source, event, talent } = photo
+        const { caption, source  } = photo
         this.caption_text_element.innerHTML = marked.parseInline(caption)
         if (source)
             this.caption_src_element.innerHTML = `Source: ${marked.parseInline(source)}`
-
+        const { event, talent, org, venue, championship, article } = photo
         if (event)
-            this.caption_info_element.innerHTML = `${this.dtf.format(date)} ${marked.parseInline(event)}`
+            info.innerHTML = `${this.dtf.format(date)} ${marked.parseInline(event)}`
         else if (talent)
-            this.caption_info_element.innerHTML = `Talent: ${marked.parseInline(talent)}`
+            info.innerHTML = `Talent: ${marked.parseInline(talent)}`
+        else if (venue)
+            info.innerHTML = `Venue: ${marked.parseInline(venue)}`
+        else if (org)
+            info.innerHTML = `Organization: ${marked.parseInline(org)}`
+        else if (championship)
+            info.innerHTML = `Championship: ${marked.parseInline(championship)}`
+        else if (article)
+            info.innerHTML = `Article: ${marked.parseInline(article)}`
 
         const caption_el = this.element.querySelector('#caption')
         caption_el.style.display = 'block'
