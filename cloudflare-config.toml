@@ -12,8 +12,9 @@ mensch_theme = "theme-base-0e"
 default_theme = "dark"
 mensch_links = [
   { url = "//tpwres.pl/e/", name = "Events", icon = "calendar-1" },
-  { url = "//tpwres.pl/w/", name = "People", icon = "users" },
   { url = "//tpwres.pl/o/", name = "Orgs", icon = "handshake" },
+  { url = "//tpwres.pl/w/", name = "People", icon = "users" },
+  { url = "//tpwres.pl/tt/", name = "Teams", icon = "biceps-flexed" },
   { url = "//tpwres.pl/a/", name = "Articles", icon = "book" },
   { url = "//tpwres.pl/v/", name = "Places", icon = "map-pin-house" },
   { url = "//tpwres.pl/c/", name = "Championships", icon = "trophy" },
