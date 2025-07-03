@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{{ get_url(path="slideshow.css", trailing_slash=false) }}"/>
+{% endblock %}
 {% block content %}
 {% set gallery_root = config.extra.gallery_root %}
 {% set event_photos = config.extra.event_photos_url %}
