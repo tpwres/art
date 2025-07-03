@@ -1,0 +1,58 @@
+#controls
+  text-align: center
+
+  fieldset legend
+    padding: 0.5rem
+
+button#start-slideshow
+  display: inline-block
+  font-size: 1.5rem
+
+#slideshow-container
+  .pic
+    position: absolute
+    left: 50%
+    transform: translate(-50%)
+    object-fit: contain
+    display: block
+    margin: 0 auto
+    transition: opacity 0.5s linear
+
+  #caption
+    min-width: 33vw
+    display: none
+    position: absolute
+    padding: 0.5rem 1rem
+    background: color-mix(in srgb, var(--disabled), transparent 30%)
+    color: var(--fg)
+    backdrop-filter: blur(5px)
+
+    &.right
+      bottom: 0
+      right: 0
+
+    &.left
+      bottom: 0
+      left: 0
+
+    progress
+      width: 100%
+      accent-color: var(--accent)
+
+    .source
+      float: right
+      padding-left: 2em
+
+    .text
+      font-size: 3rem
+
+    .source, .event
+      font-size: 2rem
+
+    @media only screen and (max-width: 720px)
+      .text
+        font-size: 2rem
+
+      .source, .event
+        font-size: 1.3rem
+

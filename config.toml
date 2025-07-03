@@ -4,13 +4,13 @@ compile_sass = true
 
 title = "TPW Artwall"
 
-theme = "mensch"
+theme = "web"
 
 [extra]
 mensch_theme = "theme-base-0e"
 
 default_theme = "dark"
-mensch_links = [
+header_links = [
   { url = "//tpwres.pl/e/", name = "Events", icon = "calendar-1" },
   { url = "//tpwres.pl/o/", name = "Orgs", icon = "handshake" },
   { url = "//tpwres.pl/w/", name = "People", icon = "users" },
