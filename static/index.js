@@ -18,6 +18,7 @@ class SlideshowController {
         this.element = root
         this.img_element = root.querySelector('.pic')
         this.spare_element = root.querySelector('.pic.spare')
+        this.caption_element = root.querySelector('#caption')
         this.caption_text_element = root.querySelector('#caption .text')
         this.caption_src_element = root.querySelector('#caption .source')
         this.caption_info_element = root.querySelector('#caption .event')
@@ -73,10 +74,14 @@ class SlideshowController {
         this.allow_venue = !!$('[name=filter][value=venue]:checked')
         this.allow_championship = !!$('[name=filter][value=championship]:checked')
         this.allow_article = !!$('[name=filter][value=article]:checked')
+        this.font_size = $('[name=font]:checked').value
+        this.textbox_style = $('[name=text]:checked').value
     }
 
     start_slideshow() {
         this.read_controls()
+        this.caption_element.className = ''
+        this.caption_element.classList.add(`font-${this.font_size}`, `text-${this.textbox_style}`)
 
         this.element.requestFullscreen()
             .then(() => this.advance_and_reset_interval())
