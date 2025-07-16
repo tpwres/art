@@ -29,13 +29,48 @@ button#start-slideshow
     transition: opacity 0.5s linear
 
   #caption
-    max-width: 33vw
+    min-width: 33vw
+    max-width: 50vw
     display: none
     position: absolute
     padding: 0.5rem 1rem
     background: color-mix(in srgb, var(--disabled), transparent 30%)
     color: var(--fg)
     backdrop-filter: blur(5px)
+
+    .caption-inner
+      display: grid
+      grid-template-columns: 1fr 1fr
+      grid-template-rows: auto auto auto
+      gap: 8px
+
+      .text
+        grid-column: 1 / -1
+        grid-row: 1
+        word-wrap: break-word
+        overflow-wrap: break-word
+        hyphens: auto
+
+      .event
+        grid-column: 1
+        grid-row: 2
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+
+      .source
+        grid-column: 2
+        grid-row: 2
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        text-align: right
+
+      progress
+        grid-column: 1 / -1
+        grid-row: 3
+        width: 100%
+        accent-color: var(--accent)
 
     &.right
       bottom: 0
@@ -69,12 +104,4 @@ button#start-slideshow
         font-size: 2rem
       .source, .event
         font-size: 1.6rem
-
-    progress
-      width: 100%
-      accent-color: var(--accent)
-
-    .source
-      float: right
-      padding-left: 2em
 
