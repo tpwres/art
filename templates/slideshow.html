@@ -17,33 +17,33 @@
         <details>
             <summary>Controls</summary>
             <fieldset>
-                <div>
-                    <span>Speed: </span>
-                    <input id="rapid" type="radio" name="speed" value="5000" />
-                    <label for="rapid"> Rapid (5s) </label>
-                    <input id="fast" type="radio" name="speed" value="10000" checked />
-                    <label for="fast"> Fast (10s) </label>
-                    <input id="slow" type="radio" name="speed" value="30000" />
-                    <label for="slow"> Slow (30s) </label>
-                    <input id="art" type="radio" name="speed" value="60000" />
-                    <label for="art"> Art Gallery (60s) </label>
+                <div class="control-section">
+                    <strong>Speed: </strong>
+                    <label><input id="rapid" type="radio" name="speed" value="5000" /> Rapid (5s) </label>
+                    <label><input id="fast" type="radio" name="speed" value="10000" checked /> Fast (10s) </label>
+                    <label><input id="slow" type="radio" name="speed" value="30000" /> Slow (30s) </label>
+                    <label><input id="art" type="radio" name="speed" value="60000" /> Art Gallery (60s) </label>
                 </div>
-                <div>
-                    <input id="progressbar_visible" name="progressbar_visible" type="checkbox" name="progressbar_visible">
-                    <label for="progressbar_visible">Show slide progress</label>
+                <div class="control-section">
+                    <strong>Options: </strong>
+                    <label><input id="progressbar_visible" name="progressbar_visible" type="checkbox" name="progressbar_visible"> Show slide progress</label>
                 </div>
-                <div>
-                    <span>Filter: </span>
-                    <input id="filter_events" type="checkbox" name="filter" value="event" checked />
-                    <label for="filter_events">Events</label>
-                    <input id="filter_talent" type="checkbox" name="filter" value="talent" checked />
-                    <label for="filter_talent">Talent</label>
-                    <input id="filter_venues" type="checkbox" name="filter" value="venue" checked />
-                    <label for="filter_venues">Venues</label>
-                    <input id="filter_championships" type="checkbox" name="filter" value="championship" checked />
-                    <label for="filter_champ">Championships</label>
-                    <input id="filter_articles" type="checkbox" name="filter" value="article" checked />
-                    <label for="filter_articles">Other articles</label>
+                <div class="control-section">
+                    <strong>Filter: </strong>
+                    <label><input id="filter_events" type="checkbox" name="filter" value="event" checked />Events</label>
+                    <label><input id="filter_talent" type="checkbox" name="filter" value="talent" checked />Talent</label>
+                    <label><input id="filter_venues" type="checkbox" name="filter" value="venue" checked />Venues</label>
+                    <label><input id="filter_championships" type="checkbox" name="filter" value="championship" checked />Championships</label>
+                    <label><input id="filter_articles" type="checkbox" name="filter" value="article" checked />Other articles</label>
+                </div>
+                <div class="control-section">
+                    <strong>Text: </strong>
+                    <label><input id="text_off" name="text" type="radio" value="off"/> Off</label>
+                    <label><input id="text_minimal" name="text" type="radio" value="minimal"/> Minimal</label>
+                    <label><input id="text_full" name="text" type="radio" value="full" checked/> Full</label>
+                    <label><input id="font_small" name="font" type="radio" value="small"/> Tiny</label>
+                    <label><input id="font_medium" name="font" type="radio" value="medium"/> Readable</label>
+                    <label><input id="font_large" name="font" type="radio" value="large" checked/> Jumbo</label>
                 </div>
             </fieldset>
         </details>
@@ -58,7 +58,6 @@
     <img class="pic spare" id="original-spare" />
     <aside id="caption">
         <span class="text"></span>
-        <br/>
         <span class="event"></span>
         <span class="source"></span>
         <br/>

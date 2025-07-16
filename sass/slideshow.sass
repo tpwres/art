@@ -4,6 +4,16 @@
   fieldset legend
     padding: 0.5rem
 
+  .control-section
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    padding: 0.25rem 0
+    gap: 0.25rem
+
+  input[type=checkbox], input[type=radio]
+    vertical-align: middle
+
 button#start-slideshow
   display: inline-block
   font-size: 1.5rem
@@ -19,7 +29,7 @@ button#start-slideshow
     transition: opacity 0.5s linear
 
   #caption
-    min-width: 33vw
+    max-width: 33vw
     display: none
     position: absolute
     padding: 0.5rem 1rem
@@ -35,6 +45,31 @@ button#start-slideshow
       bottom: 0
       left: 0
 
+    &.text-off
+      visibility: hidden
+
+    &.text-minimal .text
+      display: none
+
+    .text
+      font-size: 3rem
+      display: block /* instead of the <br> element */
+
+    .source, .event
+      font-size: 2rem
+
+    &.font-small
+      .text
+        font-size: 1rem
+      .source, .event
+        font-size: 0.8rem
+
+    &.font-medium
+      .text
+        font-size: 2rem
+      .source, .event
+        font-size: 1.6rem
+
     progress
       width: 100%
       accent-color: var(--accent)
@@ -42,17 +77,4 @@ button#start-slideshow
     .source
       float: right
       padding-left: 2em
-
-    .text
-      font-size: 3rem
-
-    .source, .event
-      font-size: 2rem
-
-    @media only screen and (max-width: 720px)
-      .text
-        font-size: 2rem
-
-      .source, .event
-        font-size: 1.3rem
 
